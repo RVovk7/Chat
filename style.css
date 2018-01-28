@@ -1,0 +1,83 @@
+#chatMain{
+    border-radius: 25px;
+    margin: 10px;
+    float: left;
+    width: 60%;
+    height: 400px;
+    border: 1px solid silver;
+    
+}
+#chatH{
+    position: relative;
+    border-bottom: 1px solid silver;
+    height: 30px;
+    border-radius: 25px 25px 0px 0px;
+    background-color:  rgba(53, 58, 61,0.3);
+    color:white;
+}
+#chat{
+    position: relative;
+    height: 350px;
+    /* border: 1px solid silver; */
+}
+#usersMain{
+    border-radius: 25px;
+    margin: 10px;
+    position: relative;
+    float: left;
+    width: 35%;
+    height: 400px;
+    border: 1px solid silver;
+}
+#usersH{
+    position: relative;
+    border-bottom: 1px solid silver;
+    height: 30px;
+    border-radius: 25px 25px 0px 0px;
+    background-color:  rgba(53, 58, 61,0.3);
+    color:white;
+}
+#users{
+    position: relative;
+    height: 320px;
+    overflow: scroll;
+     /* border-bottom: 1px solid silver;  */
+   
+}
+#usersButton{
+    position: relative;
+    margin: 0 auto;
+    width: 100px;
+}
+#addUser{
+    position: relative;
+    width: 100px;
+    -webkit-appearance: default-button;
+    height: 35px;
+    border-radius: 13px;
+    background-color:  rgba(53, 58, 61,0.3);
+    color:white;
+    }
+.userDiv{
+    position: relative;
+    margin: 10px;
+    width: 90%;
+    float: left;
+    
+}
+.avatar{
+    
+    position: relative;
+    float: left;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.userInf{
+    margin-left: 10px;
+position: relative;
+    float: left;
+    font-size: 1.2em;
+}
+.userAbout{
+    font-size: 0.7em;
+}

@@ -16,16 +16,17 @@ addUser.addEventListener('click', () => {
 
 let xnrMessage = new XMLHttpRequest();
 
-function getM(a){
-    xnrMessage.open('GET', 'http://www.randomtext.me/api/gibberish/p-5/5-15');
+setInterval(function() {
+    xnrMessage.open('GET', 'http://www.randomtext.me/api/gibberish/p-1/3-10');
     xnrMessage.onreadystatechange = () => {
         if (xnrMessage.status == 200 && xnrMessage.readyState === 4) {
             let arrMessage = JSON.parse(xnrMessage.responseText);
-             message(a,arrMessage['text_out']);
+            message(arrMessage['text_out'])
         }
     }
     xnrMessage.send();
-} 
+}, randM());
+
 let arrUsr = [];
 function UI(user) {
 
@@ -58,9 +59,60 @@ function UI(user) {
     userDiv.appendChild(userInf);
     userMain.appendChild(userDiv);
     arrUsr.push(user);
-    getM(arrUsr);
+   
 }
-function message(users,mess){
-  
-console.log(mess);
+function randM(){
+    return Math.floor(Math.random() *  (10000 - 2000 + 1)) + 2000;
 }
+function randUser(){
+    return Math.floor(Math.random() *  (arrUsr.length-1 - 0 + 1)) + 0;
+}
+
+function message(text){
+    if (arrUsr.length !==0){
+        let user = arrUsr[randUser()];
+        let messageMain = document.getElementById('chat');
+        let messageDiv = document.createElement('div');
+         
+        messageMain.scrollTop = messageMain.scrollHeight;
+        messageDiv.classList.add('userDiv');
+        let login = user['login'];
+          let foto = user['picture'];
+          let avatar = document.createElement('div');
+          avatar.classList.add("avatar");
+          let img = document.createElement("IMG");
+          img.src = foto['medium'];
+          let userInf = document.createElement('div');
+          userInf.classList.add('userInf');
+         
+          let date = new Date();
+          let options = {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+          }
+        
+        /////age calculation
+          let d = date.toLocaleString("ua-UA", options).split('/').reverse();
+        let age =user.dob.split(' ');
+        age.length=1;
+        let age0 = age.toString().split('-');
+        let ageUser =0;
+        if(d[2] < age0[1] || d[2] == age0[0] && d[1] <= age0[2]){
+           ageUser = d[0]-age0[0]-1
+        }
+        ageUser = d[0]-age0[0];
+            ///////////
+        userInf.innerHTML = `${login['username']} (Age:${ageUser})`;
+        let userAbout = document.createElement('div');
+        userAbout.classList.add('messageAbout');
+        userAbout.innerHTML = text;
+
+          avatar.appendChild(img);
+          messageDiv.appendChild(avatar);
+           userInf.appendChild(userAbout);
+         messageDiv.appendChild(userInf);
+          messageMain.appendChild(messageDiv);
+        
+    }
+ }

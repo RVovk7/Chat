@@ -18,6 +18,8 @@
 #chat{
     position: relative;
     height: 350px;
+    overflow: scroll;
+    overflow-wrap: break-word;
     /* border: 1px solid silver; */
 }
 #usersMain{
@@ -60,7 +62,7 @@
     }
 .userDiv{
     position: relative;
-    margin: 10px;
+    margin: 5px;
     width: 90%;
     float: left;
     
@@ -80,4 +82,13 @@ position: relative;
 }
 .userAbout{
     font-size: 0.7em;
+    position: relative;
+    overflow-wrap: break-word;
+}
+.messageAbout{
+    font-size: 0.7em;
+    overflow-wrap: break-word;
+    position: relative;
+    height: 40px;
+    
 }

@@ -5,7 +5,7 @@ addUser.addEventListener('click', () => {
     xnrUser.onreadystatechange = () => {
         if (xnrUser.status == 200 && xnrUser.readyState === 4) {
             let arrUsers = JSON.parse(xnrUser.responseText);
-            UI(arrUsers.results[0]);
+            UI(arrUsers.results[0]); 
         }
     }
     xnrUser.send();
@@ -14,7 +14,7 @@ addUser.addEventListener('click', () => {
 let xnrMessage = new XMLHttpRequest();
 
 setInterval(function () {
-    xnrMessage.open('GET', 'http://www.randomtext.me/api/gibberish/p-1/3-10');
+    xnrMessage.open('GET', 'http://www.randomtext.me/api/gibberish/p-1/5-10');
     xnrMessage.onreadystatechange = () => {
         if (xnrMessage.status == 200 && xnrMessage.readyState === 4) {
             let arrMessage = JSON.parse(xnrMessage.responseText);
@@ -26,9 +26,8 @@ setInterval(function () {
 
 let arrUsr = [];
 function UI(user) {
-
     let userMain = document.getElementById('users');
-    userMain.scrollTop = userMain.scrollHeight;
+    userMain.scrollTop = userMain.scrollHeight;   /////scrol to top
     let userDiv = document.createElement('div');
     userDiv.classList.add('userDiv');
     let name = user['name'];
@@ -54,8 +53,7 @@ function UI(user) {
     userInf.appendChild(userAbout);
     userDiv.appendChild(userInf);
     userMain.appendChild(userDiv);
-    arrUsr.push(user);
-
+    arrUsr.push(user);   ////user arr push
 }
 function randM() {
     return Math.floor(Math.random() * (10000 - 2000 + 1)) + 2000;
@@ -78,8 +76,8 @@ function message(text) {
         avatar.classList.add("avatar");
         let img = document.createElement("IMG");
         img.src = foto['medium'];
-        let userInf = document.createElement('div');
-        userInf.classList.add('userInf');
+        let mInf = document.createElement('div');
+        mInf.classList.add('mInf');
 
         let date = new Date();
         let options = {
@@ -96,23 +94,32 @@ function message(text) {
         if (d[2] < age0[1] || d[2] == age0[0] && d[1] <= age0[2]) {
             ageUser = d[0] - age0[0] - 1;
         }
-        else{
+        else {
             ageUser = d[0] - age0[0];
         }
-        
+
         ///////////
-        userInf.innerHTML = `${login['username']} (Age:${ageUser})`;
+        mInf.innerHTML = `${login['username']} (Age:${ageUser})`;
         let userAbout = document.createElement('div');
         userAbout.classList.add('messageAbout');
         userAbout.innerHTML = text;
 
+        let time = new Date();
+        let op = {
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+        }
+        let timeD = document.createElement('div');
+        timeD.classList.add('time');
+        let t = time.toLocaleString("ua-UA", op);
+        timeD.innerHTML = t;
+
         avatar.appendChild(img);
         messageDiv.appendChild(avatar);
-        userInf.appendChild(userAbout);
-        messageDiv.appendChild(userInf);
+        mInf.appendChild(userAbout);
+        mInf.appendChild(timeD);
+        messageDiv.appendChild(mInf);
         messageMain.appendChild(messageDiv);
-
-
-
     }
 }
